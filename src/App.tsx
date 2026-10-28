@@ -1,5 +1,7 @@
+import AppShell from './components/AppShell'
+
 function App() {
-  return <main aria-label="Storage portal" />
+  return <AppShell />
 }
 
 export default App
