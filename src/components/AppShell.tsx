@@ -5,8 +5,10 @@ import {
   DocumentRegular,
   DocumentFolderColor,
   FolderOpenRegular,
+  GridDotsRegular,
   HomeRegular,
   PanelLeftRegular,
+  PanelLeftFilled,
   SearchRegular,
   SettingsRegular,
 } from '@fluentui/react-icons'
@@ -90,20 +92,37 @@ function AppShell({ children }: { children?: ReactNode }) {
               Storage
             </Text>
           </a>
-          <Tooltip
-            content={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-            relationship="label"
-          >
-            <Button
-              appearance="subtle"
-              size="small"
-              icon={<PanelLeftRegular />}
-              aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-              aria-expanded={!collapsed}
-              aria-controls="primary-navigation"
-              onClick={() => setCollapsed(!collapsed)}
-            />
-          </Tooltip>
+          <div className="app-shell-header-actions">
+            <Tooltip content="App launcher" relationship="label">
+              <Button
+                className="app-shell-launcher"
+                appearance="subtle"
+                size="small"
+                icon={<GridDotsRegular />}
+                aria-label="App launcher"
+              />
+            </Tooltip>
+            <Tooltip
+              content={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              relationship="label"
+            >
+              <Button
+                className="app-shell-toggle"
+                appearance="subtle"
+                size="small"
+                icon={collapsed ? (
+                  <span className="app-shell-toggle-icons">
+                    <DocumentFolderColor className="app-shell-toggle-brand" />
+                    <PanelLeftFilled className="app-shell-toggle-expand" />
+                  </span>
+                ) : <PanelLeftRegular />}
+                aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+                aria-expanded={!collapsed}
+                aria-controls="primary-navigation"
+                onClick={() => setCollapsed((value) => !value)}
+              />
+            </Tooltip>
+          </div>
         </header>
         <nav id="primary-navigation" className="app-shell-navigation" aria-label="Main navigation">
           <div className="app-shell-nav-group">
